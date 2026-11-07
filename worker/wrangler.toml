@@ -6,7 +6,7 @@ workers_dev = true
 [[d1_databases]]
 binding = "DB"
 database_name = "gzowo-starnet"
-database_id = "00000000-0000-0000-0000-000000000000"
+database_id = "9f1307f8-fc8c-4f5a-9018-00efede5f7b6"
 
 [triggers]
 crons = ["23 * * * *"]
