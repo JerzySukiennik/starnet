@@ -1,0 +1,17 @@
+name = "gzowo-starnet"
+main = "src/index.mjs"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "gzowo-starnet"
+database_id = "00000000-0000-0000-0000-000000000000"
+
+[triggers]
+crons = ["23 * * * *"]
+
+[vars]
+PROJECTS_URL = "https://gzowo.fun/data/projects.json"
+TAGS_URL = "https://starnet.gzowo.fun/data/tags.json"
+SITE = "https://gzowo.fun/"
