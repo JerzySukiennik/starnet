@@ -10,6 +10,7 @@ const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const coarse = matchMedia('(pointer: coarse)').matches;
 const isPhone = coarse && Math.min(screen.width, screen.height) < 600;
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const EMBED = (() => { try { return window.top !== window; } catch (e) { return true; } })();
 
 const TX = {
   pl: {
@@ -523,6 +524,7 @@ function fillCard(n) {
   lk.textContent = o.liked ? t.liked : t.like; lk.classList.toggle('on', o.liked);
   np.textContent = o.noped ? t.noped : t.nope;
   pl.href = P.playable ? P.url : P.page;
+  pl.target = EMBED && !P.playable ? '_top' : '_blank';
   pl.textContent = P.playable ? t.play : t.look;
 }
 function wireCard() {
@@ -554,6 +556,10 @@ function wireCard() {
 }
 
 async function boot() {
+  if (EMBED) {
+    document.documentElement.classList.add('embed');
+    for (const a of document.querySelectorAll('a[href^="https://gzowo.fun"]')) a.target = '_top';
+  }
   $('#loading').textContent = tx().loading;
   i18n();
   const [pj, tags, man, remote] = await Promise.all([
